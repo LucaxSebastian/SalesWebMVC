@@ -6,8 +6,7 @@ namespace SalesWebMvc.Models
     {
         public DbSet<Department> Department { get; set; }
 
-        public SalesWebMvcContext(DbContextOptions<SalesWebMvcContext> options)
-            : base(options)
+        public SalesWebMvcContext(DbContextOptions<SalesWebMvcContext> options) : base(options)
         {
         }
     }

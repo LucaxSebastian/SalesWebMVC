@@ -30,7 +30,8 @@ namespace SalesWebMvc
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<SalesWebMvcContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SalesWebMvcContext")));
+            services.AddDbContext<SalesWebMvcContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SalesWebMvcContext"),
+                builder => builder.MigrationsAssembly("SalesWebMvc")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
