@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Models;
+using SalesWebMvc.Data;
 
 namespace SalesWebMvc
 {
@@ -32,13 +32,16 @@ namespace SalesWebMvc
 
             services.AddDbContext<SalesWebMvcContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SalesWebMvcContext"),
                 builder => builder.MigrationsAssembly("SalesWebMvc")));
+
+            services.AddScoped<SeedingService>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seendingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seendingService.Seed();
             }
             else
             {
