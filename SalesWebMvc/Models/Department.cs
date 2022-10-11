@@ -20,11 +20,6 @@ namespace SalesWebMvc.Models
             this.Name = name;
         }
 
-        public void AddSaler(Seller seller)
-        {
-            Sellers.Add(seller);
-        }
-
         public double TotalSales(DateTime inital, DateTime final)
         {
             return Sellers.Sum(saller => saller.TotalSales(inital, final));
