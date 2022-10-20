@@ -27,8 +27,8 @@ namespace SalesWebMvc.Controllers
                 return NotFound();
             }
 
-            var department = await _context.Department
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var department = await _context.Department.FirstOrDefaultAsync(dp => dp.Id == id);
+
             if (department == null)
             {
                 return NotFound();
@@ -52,6 +52,7 @@ namespace SalesWebMvc.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(department);
         }
 
@@ -63,10 +64,12 @@ namespace SalesWebMvc.Controllers
             }
 
             var department = await _context.Department.FindAsync(id);
+
             if (department == null)
             {
                 return NotFound();
             }
+
             return View(department);
         }
 
@@ -97,8 +100,10 @@ namespace SalesWebMvc.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(department);
         }
 
@@ -109,8 +114,8 @@ namespace SalesWebMvc.Controllers
                 return NotFound();
             }
 
-            var department = await _context.Department
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var department = await _context.Department.FirstOrDefaultAsync(dp => dp.Id == id);
+
             if (department == null)
             {
                 return NotFound();
